@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio 16 - Codigo Completo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 12px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            font-size: 11px;
+        }
+        .ejercicio {
+            page-break-inside: avoid;
+            margin-bottom: 20px;
+        }
+        @media print {
+            h2 {
+                page-break-before: always;
+            }
+            h2:first-of-type {
+                page-break-before: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Laboratorio 16 - JavaScript: Eventos y JSON</h1>
+    <p><strong>Autor:</strong> Mark hancco</p>
+    <p><strong>Curso:</strong> Introduccion al Desarrollo Web - EPIS UNSA 2025</p>
+
+    <h2>Ejercicio 3 - Cambiar texto</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Cambiar Texto&lt;/h1&gt;
+    &lt;p id="texto"&gt;Texto original&lt;/p&gt;
+    &lt;button id="btnCambiar"&gt;Cambiar&lt;/button&gt;
+    &lt;script src="../js/ejercicio3.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 3
+// Autor: Mark hancco
+
+const boton = document.getElementById("btnCambiar");
+const texto = document.getElementById("texto");
+
+boton.addEventListener("click", () => {
+    texto.textContent = "Texto cambiado";
+});</pre>
+    </div>
+
+    <h2>Ejercicio 4 - Toggle texto</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 4&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Toggle Texto&lt;/h1&gt;
+    &lt;p id="texto"&gt;Texto original&lt;/p&gt;
+    &lt;button id="btnToggle"&gt;Cambiar&lt;/button&gt;
+    &lt;script src="../js/ejercicio4.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 4
+// Autor: Mark hancco
+
+const boton = document.getElementById("btnToggle");
+const texto = document.getElementById("texto");
+let esOriginal = true;
+
+boton.addEventListener("click", () => {
+    if (esOriginal) {
+        texto.textContent = "Texto cambiado";
+    } else {
+        texto.textContent = "Texto original";
+    }
+    esOriginal = !esOriginal;
+});</pre>
+    </div>
+
+    <h2>Ejercicio 5 - Modo oscuro</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 5&lt;/title&gt;
+    &lt;style&gt;
+        .oscuro {
+            background-color: #333;
+            color: white;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Modo Oscuro&lt;/h1&gt;
+    &lt;button id="btnModo"&gt;Activar/Desactivar&lt;/button&gt;
+    &lt;script src="../js/ejercicio5.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 5
+// Autor: Mark hancco
+
+const boton = document.getElementById("btnModo");
+
+boton.addEventListener("click", () => {
+    document.body.classList.toggle("oscuro");
+});</pre>
+    </div>
+
+    <h2>Ejercicio 6 - Contador</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 6&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Contador&lt;/h1&gt;
+    &lt;button id="btnRestar"&gt;-&lt;/button&gt;
+    &lt;span id="contador"&gt;0&lt;/span&gt;
+    &lt;button id="btnSumar"&gt;+&lt;/button&gt;
+    &lt;p id="mensaje"&gt;&lt;/p&gt;
+    &lt;script src="../js/ejercicio6.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 6
+// Autor: Mark hancco
+
+const btnSumar = document.getElementById("btnSumar");
+const btnRestar = document.getElementById("btnRestar");
+const contador = document.getElementById("contador");
+const mensaje = document.getElementById("mensaje");
+
+let valor = 0;
+
+btnSumar.addEventListener("click", () => {
+    valor++;
+    contador.textContent = valor;
+    mensaje.textContent = "";
+});
+
+btnRestar.addEventListener("click", () => {
+    if (valor > 0) {
+        valor--;
+        contador.textContent = valor;
+        mensaje.textContent = "";
+    } else {
+        mensaje.textContent = "El contador no puede ser menor a cero";
+        mensaje.style.color = "red";
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 7 - Lista dinamica</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 7 - Lista Dinamica&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Agregar elementos a lista&lt;/h1&gt;
+    &lt;input type="text" id="textoInput" placeholder="Escribe algo..."&gt;
+    &lt;button id="btnAgregar"&gt;Agregar&lt;/button&gt;
+    &lt;button id="btnBorrar"&gt;Borrar ultimo&lt;/button&gt;
+    &lt;ul id="miLista"&gt;&lt;/ul&gt;
+    &lt;script src="../js/ejercicio7.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 7
+// Autor: Mark hancco
+
+let input = document.getElementById("textoInput");
+let btnAgregar = document.getElementById("btnAgregar");
+let btnBorrar = document.getElementById("btnBorrar");
+let lista = document.getElementById("miLista");
+
+btnAgregar.addEventListener("click", function() {
+    let texto = input.value;
+    if (texto != "") {
+        let nuevoItem = document.createElement("li");
+        nuevoItem.textContent = texto;
+        lista.appendChild(nuevoItem);
+        input.value = "";
+    } else {
+        alert("Escribe algo primero");
+    }
+});
+
+btnBorrar.addEventListener("click", function() {
+    let items = lista.getElementsByTagName("li");
+    if (items.length > 0) {
+        lista.removeChild(items[items.length - 1]);
+    } else {
+        alert("No hay elementos para borrar");
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 8 - Validar formulario</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 8 - Validar Formulario&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Validacion de Formulario&lt;/h1&gt;
+    &lt;form id="miFormulario"&gt;
+        &lt;div&gt;
+            &lt;label&gt;Nombre:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="text" id="nombre"&gt;
+            &lt;div id="errorNombre"&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;br&gt;
+        &lt;div&gt;
+            &lt;label&gt;Correo:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="text" id="correo"&gt;
+            &lt;div id="errorCorreo"&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;br&gt;
+        &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script src="../js/ejercicio8.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 8
+// Autor: Mark hancco
+
+let formulario = document.getElementById("miFormulario");
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let nombre = document.getElementById("nombre");
+    let correo = document.getElementById("correo");
+    let errorNombre = document.getElementById("errorNombre");
+    let errorCorreo = document.getElementById("errorCorreo");
+
+    errorNombre.innerHTML = "";
+    errorCorreo.innerHTML = "";
+    let hayError = false;
+
+    if (nombre.value == "") {
+        let span = document.createElement("span");
+        span.textContent = "El nombre es obligatorio";
+        span.style.color = "red";
+        errorNombre.appendChild(span);
+        hayError = true;
+    }
+
+    if (correo.value == "") {
+        let span = document.createElement("span");
+        span.textContent = "El correo es obligatorio";
+        span.style.color = "red";
+        errorCorreo.appendChild(span);
+        hayError = true;
+    }
+
+    if (!hayError) {
+        alert("Formulario enviado correctamente!");
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 9 - Galeria</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 9 - Galeria&lt;/title&gt;
+    &lt;style&gt;
+        .miniaturas img { width: 100px; height: 100px; cursor: pointer; margin: 5px; }
+        #imagenGrande { width: 400px; height: 400px; border: 3px solid black; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Galeria de Imagenes&lt;/h1&gt;
+    &lt;div class="miniaturas"&gt;
+        &lt;img src="https://via.placeholder.com/100/FF0000" data-grande="https://via.placeholder.com/400/FF0000"&gt;
+        &lt;img src="https://via.placeholder.com/100/00FF00" data-grande="https://via.placeholder.com/400/00FF00"&gt;
+        &lt;img src="https://via.placeholder.com/100/0000FF" data-grande="https://via.placeholder.com/400/0000FF"&gt;
+    &lt;/div&gt;
+    &lt;div id="imagenGrande"&gt;&lt;p&gt;Haz clic en una miniatura&lt;/p&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio9.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 9
+// Autor: Mark hancco
+
+let miniaturas = document.querySelectorAll(".miniaturas img");
+let contenedor = document.getElementById("imagenGrande");
+
+for (let i = 0; i < miniaturas.length; i++) {
+    miniaturas[i].addEventListener("click", function() {
+        let urlGrande = this.getAttribute("data-grande");
+        contenedor.innerHTML = '&lt;img src="' + urlGrande + '"&gt;';
+    });
+}</pre>
+    </div>
+
+    <h2>Ejercicio 10 - Tabla dinamica</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 10 - Tabla Dinamica&lt;/title&gt;
+    &lt;style&gt;
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Tabla de Productos&lt;/h1&gt;
+    &lt;button id="btnGenerar"&gt;Generar Tabla&lt;/button&gt;
+    &lt;div id="contenedor"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio10.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 10
+// Autor: Mark hancco
+
+const productos = [
+    { nombre: "Laptop", precio: 3500 },
+    { nombre: "Mouse", precio: 80 },
+    { nombre: "Teclado", precio: 150 },
+    { nombre: "Monitor", precio: 800 }
+];
+
+let btn = document.getElementById("btnGenerar");
+let contenedor = document.getElementById("contenedor");
+
+btn.addEventListener("click", function() {
+    let tabla = document.createElement("table");
+    let encabezado = document.createElement("tr");
+    let th1 = document.createElement("th");
+    th1.textContent = "Nombre";
+    let th2 = document.createElement("th");
+    th2.textContent = "Precio";
+    encabezado.appendChild(th1);
+    encabezado.appendChild(th2);
+    tabla.appendChild(encabezado);
+
+    for (let i = 0; i < productos.length; i++) {
+        let fila = document.createElement("tr");
+        let td1 = document.createElement("td");
+        td1.textContent = productos[i].nombre;
+        let td2 = document.createElement("td");
+        td2.textContent = "S/. " + productos[i].precio;
+        fila.appendChild(td1);
+        fila.appendChild(td2);
+        tabla.appendChild(fila);
+    }
+    contenedor.innerHTML = "";
+    contenedor.appendChild(tabla);
+});</pre>
+    </div>
+
+    <h2>Ejercicio 11 - Delegacion eventos</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 11 - Delegacion de Eventos&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Delegacion de Eventos&lt;/h1&gt;
+    &lt;p&gt;Haz clic en un elemento para eliminarlo&lt;/p&gt;
+    &lt;ul id="lista"&gt;
+        &lt;li&gt;Elemento 1&lt;/li&gt;
+        &lt;li&gt;Elemento 2&lt;/li&gt;
+        &lt;li&gt;Elemento 3&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script src="../js/ejercicio11.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 11
+// Autor: Mark hancco
+
+let lista = document.getElementById("lista");
+
+lista.addEventListener("click", function(event) {
+    if (event.target.tagName === "LI") {
+        event.target.remove();
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 12 - Animacion CSS</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 12 - Animacion CSS&lt;/title&gt;
+    &lt;style&gt;
+        #cuadrado { width: 100px; height: 100px; background-color: tomato; position: relative; }
+        .mover { animation: moverDerecha 2s forwards; }
+        @keyframes moverDerecha { from { left: 0; } to { left: 300px; } }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Animacion con CSS&lt;/h1&gt;
+    &lt;button id="btnMover"&gt;Mover&lt;/button&gt;
+    &lt;button id="btnReiniciar"&gt;Reiniciar&lt;/button&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;div id="cuadrado"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio12.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 12
+// Autor: Mark hancco
+
+let cuadrado = document.getElementById("cuadrado");
+let btnMover = document.getElementById("btnMover");
+let btnReiniciar = document.getElementById("btnReiniciar");
+
+btnMover.addEventListener("click", function() {
+    cuadrado.classList.add("mover");
+});
+
+btnReiniciar.addEventListener("click", function() {
+    cuadrado.classList.remove("mover");
+});</pre>
+    </div>
+
+    <h2>Ejercicio 13 - CRUD usuarios</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 13 - CRUD Usuarios&lt;/title&gt;
+    &lt;style&gt;
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;CRUD de Usuarios&lt;/h1&gt;
+    &lt;form id="formulario"&gt;
+        &lt;input type="text" id="nombre" placeholder="Nombre" required&gt;
+        &lt;input type="number" id="edad" placeholder="Edad" required&gt;
+        &lt;button type="submit" id="btnAgregar"&gt;Agregar&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;table&gt;
+        &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Nombre&lt;/th&gt;&lt;th&gt;Edad&lt;/th&gt;&lt;th&gt;Acciones&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+        &lt;tbody id="tablaUsuarios"&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;script src="../js/ejercicio13.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 13
+// Autor: Mark hancco
+
+let formulario = document.getElementById("formulario");
+let inputNombre = document.getElementById("nombre");
+let inputEdad = document.getElementById("edad");
+let tabla = document.getElementById("tablaUsuarios");
+let editandoId = null;
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let nombre = inputNombre.value;
+    let edad = inputEdad.value;
+
+    if (editandoId !== null) {
+        let fila = document.querySelector(`tr[data-id="${editandoId}"]`);
+        fila.children[0].textContent = nombre;
+        fila.children[1].textContent = edad;
+        editandoId = null;
+        document.getElementById("btnAgregar").textContent = "Agregar";
+    } else {
+        let id = Date.now();
+        let fila = document.createElement("tr");
+        fila.setAttribute("data-id", id);
+        fila.innerHTML = `&lt;td&gt;${nombre}&lt;/td&gt;&lt;td&gt;${edad}&lt;/td&gt;
+            &lt;td&gt;&lt;button class="btn-editar"&gt;Editar&lt;/button&gt;
+            &lt;button class="btn-eliminar"&gt;Eliminar&lt;/button&gt;&lt;/td&gt;`;
+        tabla.appendChild(fila);
+    }
+    inputNombre.value = "";
+    inputEdad.value = "";
+});
+
+tabla.addEventListener("click", function(event) {
+    let fila = event.target.closest("tr");
+    if (event.target.classList.contains("btn-eliminar")) {
+        fila.remove();
+    }
+    if (event.target.classList.contains("btn-editar")) {
+        inputNombre.value = fila.children[0].textContent;
+        inputEdad.value = fila.children[1].textContent;
+        editandoId = fila.getAttribute("data-id");
+        document.getElementById("btnAgregar").textContent = "Actualizar";
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 14 - Objeto a JSON</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 14&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Objeto a JSON&lt;/h1&gt;
+    &lt;p&gt;Revisa la consola del navegador&lt;/p&gt;
+    &lt;script src="../js/ejercicio14.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 14
+// Autor: Mark hancco
+
+const persona = {
+    nombre: "Carlos",
+    edad: 25,
+    ciudad: "Arequipa"
+};
+
+const personaJSON = JSON.stringify(persona);
+console.log("Objeto persona:", persona);
+console.log("JSON stringify:", personaJSON);</pre>
+    </div>
+
+    <h2>Ejercicio 15 - JSON a objeto</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 15&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;JSON a Objeto&lt;/h1&gt;
+    &lt;p id="resultado"&gt;&lt;/p&gt;
+    &lt;script src="../js/ejercicio15.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 15
+// Autor: Mark hancco
+
+const cadenaJSON = '{"nombre": "Ana", "edad": 22, "carrera": "Ingenieria de Sistemas"}';
+const objeto = JSON.parse(cadenaJSON);
+const resultado = document.getElementById("resultado");
+resultado.textContent = `Nombre: ${objeto.nombre}, Edad: ${objeto.edad}, Carrera: ${objeto.carrera}`;
+console.log("Cadena JSON:", cadenaJSON);
+console.log("Objeto parseado:", objeto);</pre>
+    </div>
+
+    <h2>Ejercicio 16 - Productos JSON</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 16 - Productos JSON&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Lista de Productos&lt;/h1&gt;
+    &lt;button id="btnMostrar"&gt;Mostrar Productos&lt;/button&gt;
+    &lt;ul id="listaProductos"&gt;&lt;/ul&gt;
+    &lt;script src="../js/ejercicio16.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 16
+// Autor: Mark hancco
+
+let productos = [
+    { nombre: "Laptop", precio: 3500 },
+    { nombre: "Mouse", precio: 80 },
+    { nombre: "Teclado", precio: 150 }
+];
+
+let jsonProductos = JSON.stringify(productos);
+let productosObjeto = JSON.parse(jsonProductos);
+
+let btn = document.getElementById("btnMostrar");
+let lista = document.getElementById("listaProductos");
+
+btn.addEventListener("click", function() {
+    lista.innerHTML = "";
+    for (let i = 0; i < productosObjeto.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = productosObjeto[i].nombre + " - S/. " + productosObjeto[i].precio;
+        lista.appendChild(li);
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 17 - LocalStorage</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 17 - LocalStorage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Guardar en LocalStorage&lt;/h1&gt;
+    &lt;button id="btnGuardar"&gt;Guardar Usuario&lt;/button&gt;
+    &lt;button id="btnCargar"&gt;Cargar Usuario&lt;/button&gt;
+    &lt;div id="resultado"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio17.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 17
+// Autor: Mark hancco
+
+let btnGuardar = document.getElementById("btnGuardar");
+let btnCargar = document.getElementById("btnCargar");
+let resultado = document.getElementById("resultado");
+
+let usuario = {
+    nombre: "Juan Perez",
+    correo: "juan@email.com",
+    rol: "estudiante"
+};
+
+btnGuardar.addEventListener("click", function() {
+    let jsonUsuario = JSON.stringify(usuario);
+    localStorage.setItem("miUsuario", jsonUsuario);
+    alert("Usuario guardado en localStorage");
+});
+
+btnCargar.addEventListener("click", function() {
+    let datos = localStorage.getItem("miUsuario");
+    if (datos) {
+        let usuarioRecuperado = JSON.parse(datos);
+        resultado.innerHTML = `&lt;p&gt;Nombre: ${usuarioRecuperado.nombre}&lt;/p&gt;
+            &lt;p&gt;Correo: ${usuarioRecuperado.correo}&lt;/p&gt;
+            &lt;p&gt;Rol: ${usuarioRecuperado.rol}&lt;/p&gt;`;
+    } else {
+        resultado.innerHTML = "&lt;p&gt;No hay datos guardados&lt;/p&gt;";
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 18 - Tabla libros</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 18 - Tabla de Libros&lt;/title&gt;
+    &lt;style&gt;
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Tabla de Libros&lt;/h1&gt;
+    &lt;button id="btnGenerar"&gt;Generar Tabla&lt;/button&gt;
+    &lt;div id="contenedor"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio18.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 18
+// Autor: Mark hancco
+
+let jsonLibros = `[
+    {"titulo": "Don Quijote", "autor": "Cervantes"},
+    {"titulo": "Cien años de soledad", "autor": "Garcia Marquez"},
+    {"titulo": "El principito", "autor": "Saint-Exupery"}
+]`;
+
+let btn = document.getElementById("btnGenerar");
+let contenedor = document.getElementById("contenedor");
+
+btn.addEventListener("click", function() {
+    let libros = JSON.parse(jsonLibros);
+    let tabla = document.createElement("table");
+    let thead = document.createElement("tr");
+    let th1 = document.createElement("th");
+    th1.textContent = "Titulo";
+    let th2 = document.createElement("th");
+    th2.textContent = "Autor";
+    thead.appendChild(th1);
+    thead.appendChild(th2);
+    tabla.appendChild(thead);
+
+    for (let i = 0; i < libros.length; i++) {
+        let fila = document.createElement("tr");
+        let td1 = document.createElement("td");
+        td1.textContent = libros[i].titulo;
+        let td2 = document.createElement("td");
+        td2.textContent = libros[i].autor;
+        fila.appendChild(td1);
+        fila.appendChild(td2);
+        tabla.appendChild(fila);
+    }
+    contenedor.innerHTML = "";
+    contenedor.appendChild(tabla);
+});</pre>
+    </div>
+
+    <h2>Ejercicio 19 - Modificar JSON</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 19 - Modificar JSON&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Modificar valores de JSON&lt;/h1&gt;
+    &lt;button id="btnModificar"&gt;Modificar Edad&lt;/button&gt;
+    &lt;div id="resultado"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio19.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 19
+// Autor: Mark hancco
+
+let jsonOriginal = '{"nombre": "Carlos", "edad": 20, "ciudad": "Arequipa"}';
+
+let btn = document.getElementById("btnModificar");
+let resultado = document.getElementById("resultado");
+
+btn.addEventListener("click", function() {
+    let persona = JSON.parse(jsonOriginal);
+    resultado.innerHTML = "&lt;p&gt;Original: " + JSON.stringify(persona) + "&lt;/p&gt;";
+    persona.edad = 25;
+    let jsonActualizado = JSON.stringify(persona);
+    resultado.innerHTML += "&lt;p&gt;Actualizado: " + jsonActualizado + "&lt;/p&gt;";
+});</pre>
+    </div>
+
+    <h2>Ejercicio 20 - Input a JSON</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 20 - Input a JSON&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Convertir Input a JSON&lt;/h1&gt;
+    &lt;input type="text" id="nombre" placeholder="Tu nombre"&gt;
+    &lt;button id="btnConvertir"&gt;Convertir a JSON&lt;/button&gt;
+    &lt;div id="resultado"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio20.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 20
+// Autor: Mark hancco
+
+let inputNombre = document.getElementById("nombre");
+let btn = document.getElementById("btnConvertir");
+let resultado = document.getElementById("resultado");
+
+btn.addEventListener("click", function() {
+    let nombre = inputNombre.value;
+    if (nombre != "") {
+        let datos = {
+            nombre: nombre,
+            fecha: new Date().toLocaleDateString()
+        };
+        let jsonDatos = JSON.stringify(datos);
+        console.log("JSON:", jsonDatos);
+        resultado.innerHTML = "&lt;p&gt;JSON generado: " + jsonDatos + "&lt;/p&gt;";
+    } else {
+        alert("Escribe tu nombre");
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 21 - Lista tareas</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 21 - Lista de Tareas&lt;/title&gt;
+    &lt;style&gt;
+        .completada { color: green; }
+        .pendiente { color: red; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Lista de Tareas&lt;/h1&gt;
+    &lt;button id="btnMostrar"&gt;Mostrar Tareas&lt;/button&gt;
+    &lt;ul id="listaTareas"&gt;&lt;/ul&gt;
+    &lt;script src="../js/ejercicio21.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 21
+// Autor: Mark hancco
+
+let jsonTareas = `[
+    {"titulo": "Hacer ejercicios", "completada": true},
+    {"titulo": "Estudiar para examen", "completada": false},
+    {"titulo": "Entregar laboratorio", "completada": true},
+    {"titulo": "Revisar correos", "completada": false}
+]`;
+
+let btn = document.getElementById("btnMostrar");
+let lista = document.getElementById("listaTareas");
+
+btn.addEventListener("click", function() {
+    let tareas = JSON.parse(jsonTareas);
+    lista.innerHTML = "";
+
+    for (let i = 0; i < tareas.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = tareas[i].titulo;
+        if (tareas[i].completada) {
+            li.className = "completada";
+            li.textContent += " (Completada)";
+        } else {
+            li.className = "pendiente";
+            li.textContent += " (Pendiente)";
+        }
+        lista.appendChild(li);
+    }
+});</pre>
+    </div>
+
+    <h2>Ejercicio 22 - Simulador perfil</h2>
+    <div class="ejercicio">
+        <h3>HTML</h3>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ejercicio 22 - Simulador de Perfil&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Simulador de Perfil&lt;/h1&gt;
+    &lt;form id="formulario"&gt;
+        &lt;input type="text" id="nombre" placeholder="Nombre" required&gt;&lt;br&gt;&lt;br&gt;
+        &lt;input type="number" id="edad" placeholder="Edad" required&gt;&lt;br&gt;&lt;br&gt;
+        &lt;input type="text" id="pais" placeholder="Pais" required&gt;&lt;br&gt;&lt;br&gt;
+        &lt;button type="submit"&gt;Guardar Perfil&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;div id="perfil"&gt;&lt;/div&gt;
+    &lt;script src="../js/ejercicio22.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <h3>JavaScript</h3>
+        <pre>// Laboratorio 16 - Ejercicio 22
+// Autor: Mark hancco
+
+let formulario = document.getElementById("formulario");
+let divPerfil = document.getElementById("perfil");
+
+window.addEventListener("load", function() {
+    cargarPerfil();
+});
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let nombre = document.getElementById("nombre").value;
+    let edad = document.getElementById("edad").value;
+    let pais = document.getElementById("pais").value;
+
+    let perfil = { nombre: nombre, edad: edad, pais: pais };
+    let jsonPerfil = JSON.stringify(perfil);
+    localStorage.setItem("perfil", jsonPerfil);
+    alert("Perfil guardado!");
+    cargarPerfil();
+    formulario.reset();
+});
+
+function cargarPerfil() {
+    let datos = localStorage.getItem("perfil");
+    if (datos) {
+        let perfil = JSON.parse(datos);
+        divPerfil.innerHTML = `&lt;h3&gt;Perfil Guardado:&lt;/h3&gt;
+            &lt;p&gt;Nombre: ${perfil.nombre}&lt;/p&gt;
+            &lt;p&gt;Edad: ${perfil.edad}&lt;/p&gt;
+            &lt;p&gt;Pais: ${perfil.pais}&lt;/p&gt;`;
+    } else {
+        divPerfil.innerHTML = "&lt;p&gt;No hay perfil guardado&lt;/p&gt;";
+    }
+}</pre>
+    </div>
+
+</body>
+</html>

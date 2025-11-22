@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9 - Galeria</title>
+    <style>
+        .miniaturas img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            margin: 5px;
+            border: 2px solid gray;
+        }
+        .miniaturas img:hover {
+            border-color: blue;
+        }
+        #imagenGrande {
+            width: 400px;
+            height: 400px;
+            border: 3px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #imagenGrande img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galeria de Imagenes</h1>
+
+    <div class="miniaturas">
+        <img src="https://via.placeholder.com/100/FF0000" data-grande="https://via.placeholder.com/400/FF0000">
+        <img src="https://via.placeholder.com/100/00FF00" data-grande="https://via.placeholder.com/400/00FF00">
+        <img src="https://via.placeholder.com/100/0000FF" data-grande="https://via.placeholder.com/400/0000FF">
+    </div>
+
+    <div id="imagenGrande">
+        <p>Haz clic en una miniatura</p>
+    </div>
+
+    <script src="../js/ejercicio9.js"></script>
+</body>
+</html>

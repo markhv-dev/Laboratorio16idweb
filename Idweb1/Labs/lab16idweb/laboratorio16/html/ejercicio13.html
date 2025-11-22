@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 13 - CRUD Usuarios</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+        }
+        .btn-editar {
+            background-color: orange;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn-eliminar {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>CRUD de Usuarios</h1>
+
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="number" id="edad" placeholder="Edad" required>
+        <button type="submit" id="btnAgregar">Agregar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaUsuarios">
+        </tbody>
+    </table>
+
+    <script src="../js/ejercicio13.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 12 - Animacion CSS</title>
+    <style>
+        #cuadrado {
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            position: relative;
+            left: 0;
+        }
+
+        .mover {
+            animation: moverDerecha 2s forwards;
+        }
+
+        @keyframes moverDerecha {
+            from {
+                left: 0;
+            }
+            to {
+                left: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Animacion con CSS</h1>
+
+    <button id="btnMover">Mover</button>
+    <button id="btnReiniciar">Reiniciar</button>
+
+    <br><br>
+
+    <div id="cuadrado"></div>
+
+    <script src="../js/ejercicio12.js"></script>
+</body>
+</html>
